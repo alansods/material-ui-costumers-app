@@ -1,15 +1,58 @@
-import { AppBar,Toolbar, Typography, Button, IconButton } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import { useState } from "react";
 
-import useStyles from './Header.style';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from "@material-ui/core";
+
+import { useHistory } from "react-router-dom";
+
+import MenuIcon from "@material-ui/icons/Menu";
+import HomeIcon from "@material-ui/icons/Home";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
+
+import useStyles from "./Header.style";
 
 export default function Header() {
-  const classes = useStyles()
+  
+  const classes = useStyles();
+  const history = useHistory()
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleToggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const handleMenuClick = (route) => {
+    handleToggleMenu()
+    history.push(route)
+  }
+
+  /*
+  function handleToggleMenu() {
+    setMenuOpen(!menuOpen)
+  }
+*/
 
   return (
-    <AppBar position="static">
+    <>
+      <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu">
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={() => handleToggleMenu()}
+          >
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
@@ -18,5 +61,22 @@ export default function Header() {
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
+      <Drawer open={menuOpen} onClose={() => handleToggleMenu()}>
+        <List>
+          <ListItem button onClick={() => handleMenuClick('/')}>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText>Home</ListItemText>
+          </ListItem>
+          <ListItem button onClick={() => handleMenuClick('/customers')}>
+            <ListItemIcon>
+              <PersonAddIcon />
+            </ListItemIcon>
+            <ListItemText>Cadastro de usuários</ListItemText>
+          </ListItem>
+        </List>
+      </Drawer>
+    </>
   );
 }

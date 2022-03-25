@@ -7,8 +7,8 @@ import TemplatePage from "./templates/Page";
 
 export default function App() {
   return (
-    <TemplateDefault>
-      <Router>
+    <Router>
+      <TemplateDefault>
         <Switch>
           <Route path="/customers">
             <TemplatePage title="Clientes" Component={Customers} />
@@ -17,7 +17,7 @@ export default function App() {
             <TemplatePage title="Home" Component={Home} />
           </Route>
         </Switch>
-      </Router>
-    </TemplateDefault>
+      </TemplateDefault>
+    </Router>
   );
 }
