@@ -24,10 +24,10 @@ export default function AlertDialog({ open, onClose, onConfirm, title, message }
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose} color="primary">
-            Disagree
+            Cancelar
           </Button>
           <Button onClick={onConfirm} color="primary" autoFocus>
-            Agree
+            Deletar
           </Button>
         </DialogActions>
       </Dialog>

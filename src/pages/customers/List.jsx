@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
 
-import CustomersCard from "../components/CustomersCard";
+import CustomersCard from "../../components/CustomersCard";
 
-export default function Customers() {
+export default function List() {
   const [customers, setCustomers] = useState([]);
 
   useEffect(() => {
