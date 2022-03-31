@@ -23,7 +23,7 @@ export default function List() {
   }
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={2}>
       {customers.map(item => (
         <Grid item xs={12} md={4}>
           <CustomersCard

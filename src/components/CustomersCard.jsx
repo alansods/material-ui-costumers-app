@@ -17,6 +17,7 @@ import ModalConfirm from './ModalConfirm'
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    marginTop: 40
   },
 }));
 
@@ -40,7 +41,7 @@ export default function CustumerCard({ id, name, lastname, email, avatar, onRemo
 
   return (
     <>
-      <Card className={classes.root}>
+      <Card className={classes.root} variant="outlined">
         <CardHeader
           avatar={
             <Avatar aria-label="recipe" src={avatar}>

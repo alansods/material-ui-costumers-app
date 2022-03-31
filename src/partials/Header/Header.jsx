@@ -57,7 +57,7 @@ export default function Header() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            News
+            Sistema de Clientes
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>
@@ -76,7 +76,7 @@ export default function Header() {
             </ListItemIcon>
             <ListItemText>Lista de clientes</ListItemText>
           </ListItem>
-          <ListItem button onClick={() => handleMenuClick('/customers')}>
+          <ListItem button onClick={() => handleMenuClick('/customers/add')}>
             <ListItemIcon>
               <PersonAddIcon />
             </ListItemIcon>
