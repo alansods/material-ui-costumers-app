@@ -1,16 +1,22 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
+
 import Grid from "@material-ui/core/Grid";
 
 import CustomersCard from "../../components/CustomersCard";
 
 export default function List() {
+  const history = useHistory()
+
   const [customers, setCustomers] = useState([]);
+  const [isLoadingData, setIsLoadingData] = useState(true);
 
   useEffect(() => {
     axios.get("https://reqres.in/api/users").then((response) => {
       const { data } = response.data;
       setCustomers(data);
+      setIsLoadingData(false)
     });
   }, []);
 
@@ -20,6 +26,10 @@ export default function List() {
       const newCustomersState = customers.filter((customer) => customer.id !== id)
       setCustomers(newCustomersState)
     })
+  }
+
+  const handleEditCustomer = id => {
+    history.push(`/customers/edit/${id}`)
   }
 
   return (
@@ -33,6 +43,8 @@ export default function List() {
             email={item.email}
             avatar={item.avatar}
             onRemoveCustomer={handleRemoveCustomer}
+            onEditCustomer={handleEditCustomer}
+            skeleton={isLoadingData}
           />
         </Grid>
       ))}
