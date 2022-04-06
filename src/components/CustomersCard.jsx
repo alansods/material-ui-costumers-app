@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-import Skeleton from '@material-ui/lab/Skeleton';
-
 import {
   Card,
   CardHeader,
@@ -31,7 +29,6 @@ export default function CustumerCard({
   avatar,
   onRemoveCustomer,
   onEditCustomer,
-  skeleton
 }) {
   const classes = useStyles();
 
@@ -56,34 +53,31 @@ export default function CustumerCard({
 
   return (
     <>
-      {skeleton ? <Skeleton variant="rectangular" width={210} height={118} /> : (
         <Card className={classes.root} variant="outlined">
-        <CardHeader
-          avatar={
-            <Avatar aria-label="recipe" src={avatar}>
-              R
-            </Avatar>
-          }
-          title={`${name} ${lastname}`}
-          subheader={email}
-        />
-        <CardActions disableSpacing>
-          <IconButton
-            aria-label="editar cadastro"
-            onClick={() => handleEditCustomer(id)}
-          >
-            <EditIcon />
-          </IconButton>
-          <IconButton
-            aria-label="remover cadastro"
-            onClick={() => handleRemoveCustomer()}
-          >
-            <DeleteIcon />
-          </IconButton>
-        </CardActions>
-      </Card>
-      ) }
-        
+          <CardHeader
+            avatar={
+              <Avatar aria-label="recipe" src={avatar}>
+                R
+              </Avatar>
+            }
+            title={`${name} ${lastname}`}
+            subheader={email}
+          />
+          <CardActions disableSpacing>
+            <IconButton
+              aria-label="editar cadastro"
+              onClick={() => handleEditCustomer(id)}
+            >
+              <EditIcon />
+            </IconButton>
+            <IconButton
+              aria-label="remover cadastro"
+              onClick={() => handleRemoveCustomer()}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </CardActions>
+        </Card>
         <ModalConfirm
           open={openModal}
           onClose={handleToggleOpenModal}

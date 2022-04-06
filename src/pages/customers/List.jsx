@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
+import Skeleton from '@material-ui/lab/Skeleton';
+
+
 import Grid from "@material-ui/core/Grid";
 
 import CustomersCard from "../../components/CustomersCard";
@@ -36,7 +39,8 @@ export default function List() {
     <Grid container spacing={2}>
       {customers.map(item => (
         <Grid item xs={12} md={4}>
-          <CustomersCard
+          {isLoadingData ? <Skeleton variant="rect" width={210} height={118} /> : (
+            <CustomersCard
             id={item.id}
             name={item.first_name}
             lastname={item.last_name}
@@ -44,8 +48,8 @@ export default function List() {
             avatar={item.avatar}
             onRemoveCustomer={handleRemoveCustomer}
             onEditCustomer={handleEditCustomer}
-            skeleton={isLoadingData}
           />
+          )}
         </Grid>
       ))}
     </Grid>
