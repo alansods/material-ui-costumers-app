@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
+import Skeleton from "@material-ui/lab/Skeleton";
+
 import {
   Card,
   CardHeader,
@@ -29,6 +31,7 @@ export default function CustumerCard({
   avatar,
   onRemoveCustomer,
   onEditCustomer,
+  skeleton,
 }) {
   const classes = useStyles();
 
@@ -53,6 +56,9 @@ export default function CustumerCard({
 
   return (
     <>
+      {skeleton ? (
+        <Skeleton variant="rectangular" width={345} height={140} />
+      ) : (
         <Card className={classes.root} variant="outlined">
           <CardHeader
             avatar={
@@ -78,13 +84,15 @@ export default function CustumerCard({
             </IconButton>
           </CardActions>
         </Card>
-        <ModalConfirm
-          open={openModal}
-          onClose={handleToggleOpenModal}
-          onConfirm={() => handleConfirmModal(id)}
-          title="Deseja excluir esse cadastro?"
-          message="Ao confirmar não será possível recuperar esse cadastro."
-        />
+      )}
+
+      <ModalConfirm
+        open={openModal}
+        onClose={handleToggleOpenModal}
+        onConfirm={() => handleConfirmModal(id)}
+        title="Deseja excluir esse cadastro?"
+        message="Ao confirmar não será possível recuperar esse cadastro."
+      />
     </>
   );
 }
