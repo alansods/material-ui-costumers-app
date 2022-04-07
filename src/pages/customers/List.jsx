@@ -16,7 +16,7 @@ export default function List() {
     axios.get("https://reqres.in/api/users").then((response) => {
       const { data } = response.data;
       setCustomers(data);
-      setTimeout(() => {setIsLoadingData(false)}, 3000);
+      setTimeout(() => {setIsLoadingData(false)}, 2000);
     });
   }, []);
 
