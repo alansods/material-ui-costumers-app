@@ -57,7 +57,7 @@ export default function CustumerCard({
   return (
     <>
       {skeleton ? (
-        <Skeleton variant="rectangular" width={345} height={140} />
+        <Skeleton className={classes.root} variant="rectangular" width={345} height={140} />
       ) : (
         <Card className={classes.root} variant="outlined">
           <CardHeader
